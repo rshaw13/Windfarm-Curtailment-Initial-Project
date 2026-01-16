@@ -1,8 +1,11 @@
 import os
+from dotenv import load_dotenv
 from utils.training import build_models
 from utils.io import save_models
 from utils.metadata import save_training_window, save_model_metadata
 from utils.training_dataset import build_training_dataset
+
+load_dotenv()
 
 VC_API_KEY = os.environ["VC_API_KEY"]
 

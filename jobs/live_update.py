@@ -5,6 +5,9 @@ from utils.weather import get_current_winds
 from utils.prediction import load_models, predict
 from utils.io import save_live_state
 
+from dotenv import load_dotenv
+load_dotenv()
+
 STATIC = pd.read_csv("data/merged_static.csv")
 
 coords = STATIC.set_index("DUID")[["Latitude", "Longitude"]] \
