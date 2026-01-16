@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Data / outputs
+data/wind_cache/
+models/
+metadata/
+*.parquet
+
+# Secrets
+.env

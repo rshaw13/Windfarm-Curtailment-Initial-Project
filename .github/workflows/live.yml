@@ -1,0 +1,25 @@
+name: Live wind update
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python jobs/live_update.py
+        env:
+          VC_API_KEY: ${{ secrets.VC_API_KEY }}
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/live_state.parquet
+          git commit -m "Live update" || exit 0
+          git push
