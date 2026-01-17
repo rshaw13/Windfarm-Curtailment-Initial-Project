@@ -14,7 +14,9 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: python jobs/live_update.py
+      - run: |
+          export PYTHONPATH=$GITHUB_WORKSPACE
+          python jobs/live_update.py
         env:
           VC_API_KEY: ${{ secrets.VC_API_KEY }}
       - run: |
